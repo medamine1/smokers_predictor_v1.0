@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Prediction Result</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .container {
+    background: #fff;
+    max-width: 480px;
+    width: 100%;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  h2 {
+    color: #4a4a4a;
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  .prediction {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  .smoker {
+    color: #d93025; /* red */
+  }
+  .nonsmoker {
+    color: #28a745; /* green */
+  }
+  .probability {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: #555;
+  }
+  button {
+    padding: 14px 30px;
+    background: #667eea;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+  button:hover {
+    background: #5a67d8;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Prediction Result</h2>
+
+  <div class="prediction">
+    {% if result == 1 %}
+      <span class="smoker">🚬 The person is likely a <strong>smoker</strong>.</span>
+    {% else %}
+      <span class="nonsmoker">✅ The person is likely <strong>not a smoker</strong>.</span>
+    {% endif %}
+  </div>
+
+  <div class="probability">
+    Probability: {{ probability|floatformat:2 }}%
+  </div>
+
+  <a href="{% url 'predict' %}" class="btn">
+    <button>Make Another Prediction</button>
+  </a>
+</div>
+
+</body>
+</html>
