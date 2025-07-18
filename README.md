@@ -1,4 +1,4 @@
-## Model Training / RanddomForestClassifier
+## Model Training / RandomForestClassifier
 
 Before running the prediction or testing scripts, **you must train the machine learning model first** to generate the `model.pkl` file.
 
