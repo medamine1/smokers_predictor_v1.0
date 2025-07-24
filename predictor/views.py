@@ -2,6 +2,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import joblib
 import numpy as np
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 
 # Load your model
 model = joblib.load('ml_model/model.pkl')
@@ -50,3 +52,10 @@ def predict(request):
 
     except Exception as e:
         return Response({"error": str(e)}, status=500)
+    
+
+class HelloView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        return Response(data={"message": "Hello, authenticated user!"})
